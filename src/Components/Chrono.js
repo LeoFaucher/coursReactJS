@@ -17,13 +17,13 @@ export default class Chrono extends Component {
 
             this.setState({ milliseconds: milliseconds + 1 })
             
-            if(milliseconds == 100){
+            if(milliseconds === 100){
                 this.setState({
                     milliseconds: 0,
                     seconds: seconds + 1                    
                 })
             }
-            else if(seconds == 60){
+            else if(seconds === 60){
                 this.setState({
                     seconds: 0,
                     minutes: minutes + 1
@@ -43,15 +43,14 @@ export default class Chrono extends Component {
     }
     save(){
         const {minutes, seconds, milliseconds} = this.state
-        this.props.onSave(minutes, seconds, milliseconds)
+        this.props.onSave({minutes, seconds, milliseconds})
     }
     render(){
         const { minutes, seconds, milliseconds } = this.state
-
         const { title } = this.props
 
         return(
-            <div>
+            <div className= "Chrono">
                 <div>{title}</div> 
                 {formatTime(minutes)}:{formatTime(seconds)}:{formatTime(milliseconds)}<br/>
                 <button id = "buttonstart" onClick={() => this.start()}>START</button>
